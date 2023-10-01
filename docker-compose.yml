@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 8081
+    volumes:
+      - "./frontend:/app"
+    networks:
+      - nginx-network
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - frontend
+    networks:
+      - nginx-network
+
+networks:
+  nginx-network:
+    driver: bridge

@@ -1,0 +1,14 @@
+Build Docker Image
+docker build -t pythonapp .
+
+Run Docker Container
+docker run -p 5000:5000 pythonapp
+
+Stop Docker
+docker stop 83cacfab4687
+
+Remove Docker
+docker rm 83cacfab4687
+
+Remove Image
+docker rmi pythonapp
