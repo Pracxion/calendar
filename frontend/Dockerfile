@@ -1,10 +1,12 @@
-# base image
-FROM node:20-alpine
+# build stage
+FROM node:lts-alpine
 
-# set working directory
-WORKDIR /app
-COPY package*.json ./
+WORKDIR /var/www/html/app
+
+ENV PATH /var/www/html/app/node_modules/.bin:$PATH
+
+COPY package.json /var/www/html/app/package.json
+
 RUN npm install
-COPY . .
 
 CMD ["npm", "run", "dev"]

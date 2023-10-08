@@ -6,10 +6,11 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    ports:
-      - 8081
+    env_file:
+      - ./frontend/.env
     volumes:
-      - "./frontend:/app"
+      - ./frontend:/var/www/html/app
+      - "/var/www/html/app/node_modules"
     networks:
       - nginx-network
 
